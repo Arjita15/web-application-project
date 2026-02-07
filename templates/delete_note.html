@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Note{% endblock %}
+{% block heading %}Delete Note{% endblock %}
+
+{% block content %}
+<p>Are you sure you want to delete <b>{{ data.title }}</b>?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'home' %}">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+{% block heading %}Notes Manager{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <h2>Add Note</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+<hr>
+
+<h2>All Notes</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for obj in data %}
+    <tr>
+        <td>{{ obj.title }}</td>
+        <td>{{ obj.author }}</td>
+        <td>
+            <a href="{% url 'read_one' obj.id %}">View</a>
+            <a href="{% url 'update_one' obj.id %}">Edit</a>
+            <a href="{% url 'delete_one' obj.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No notes yet</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

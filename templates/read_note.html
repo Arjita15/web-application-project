@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}View Note{% endblock %}
+{% block heading %}View Note{% endblock %}
+
+{% block content %}
+<h2>{{ data.title }}</h2>
+<p><b>Author:</b> {{ data.author }}</p>
+<p><b>Created:</b> {{ data.created_at }}</p>
+
+<hr>
+
+<p>{{ data.content }}</p>
+
+<a href="{% url 'home' %}">Back</a>
+{% endblock %}
